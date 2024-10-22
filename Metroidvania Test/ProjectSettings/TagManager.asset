@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 474805925
+    locked: 0
+  - name: Near Clouds
+    uniqueID: 561402215
+    locked: 0
+  - name: Far Mountains
+    uniqueID: 272763385
+    locked: 0
+  - name: Near Mountains
+    uniqueID: 3938437755
+    locked: 0
+  - name: Trees
+    uniqueID: 3282029151
+    locked: 0
+  - name: MidLayer_GP
+    uniqueID: 2454794905
+    locked: 0
+  - name: Trees_GP
+    uniqueID: 834853263
+    locked: 0
+  - name: Ground
+    uniqueID: 2695407675
+    locked: 0
+  - name: Player
+    uniqueID: 3572217937
+    locked: 0
+  - name: SecretZone
+    uniqueID: 2442493673
+    locked: 0
