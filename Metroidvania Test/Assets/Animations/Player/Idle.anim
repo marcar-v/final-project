@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
-    - time: 0
+    - time: 0.016666668
       value: {fileID: -1984379354, guid: e5cfa9c48ee4d4b7694945b4c8f1c595, type: 3}
-    - time: 0.2
+    - time: 0.21666667
       value: {fileID: -248030379, guid: 8ff60eb0c81f744dcacb2893aa847274, type: 3}
-    - time: 0.4
+    - time: 0.41666666
       value: {fileID: 487498124, guid: f52e85f0ffd884c759f27cf25aedd5c1, type: 3}
     - time: 0.6
       value: {fileID: 1633378489, guid: 16f584e6d7a2c47ce983d0f0961ee2a2, type: 3}
@@ -33,7 +33,7 @@ AnimationClip:
     - time: 1
       value: {fileID: 665510101, guid: c53319a242c0144448bf7bfe49003aa7, type: 3}
     attribute: m_Sprite
-    path: 
+    path: PlayerSprites
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -45,7 +45,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 377253875
       attribute: 0
       script: {fileID: 0}
       typeID: 212

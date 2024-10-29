@@ -4,26 +4,41 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D _rb;
-    [SerializeField] float _speed = 1.5f;
-    private Vector2 movement;
+    float _speed = 1.5f;
+    float _runSpeed;
+    Rigidbody2D _rb;
+    SpriteRenderer _spriteRenderer;
+    Animator _animator;
 
-    void Start()
+    private void Awake()
     {
-        // Obtén el componente Rigidbody2D
         _rb = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        // Input del jugador (solo movimiento horizontal)
-        movement.x = Input.GetAxisRaw("Horizontal");
-    }
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            _runSpeed = 1;
+            _spriteRenderer.flipX = false;
+            _animator.SetBool("Run", true);
+        }
 
-    void FixedUpdate()
-    {
-        // Movimiento del jugador solo en el eje X (horizontal)
-        _rb.MovePosition(_rb.position + new Vector2(movement.x, 0) * _speed * Time.fixedDeltaTime);
-    }
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            _runSpeed = -1;
+            _spriteRenderer.flipX = true;
+            _animator.SetBool("Run", true);
 
+        }
+
+        else
+        {
+            _runSpeed = 0;
+            _animator.SetBool("Run", false);
+        }
+        transform.position = new Vector2(transform.position.x + _runSpeed * _speed * Time.deltaTime, transform.position.y);
+    }
 }
