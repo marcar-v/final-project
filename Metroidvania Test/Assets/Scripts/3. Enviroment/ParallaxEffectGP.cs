@@ -4,36 +4,35 @@ using UnityEngine;
 
 public class ParallaxEffectGP : MonoBehaviour
 {
-    private float _startingPos; //This is starting position of the sprites.
-    private float _lengthOfSprite;    //This is the length of the sprites.
-    public float AmountOfParallax;  //This is amount of parallax scroll. 
-    public Camera MainCamera;   //Reference of the camera.
+    [SerializeField] [Range(0f, 1f)] float _lagAmount = 0f;
 
-    private void Start()
+    Vector3 _previousCameraPosition;
+    Transform _camera;
+    Vector3 _targetPosition;
+
+    private float ParallaxAmount => 1f - _lagAmount;
+
+    private void Awake()
     {
-        //Getting the starting X position of sprite.
-        _startingPos = transform.position.x;
-        //Getting the length of the sprites.
-        _lengthOfSprite = GetComponent<SpriteRenderer>().bounds.size.x;
+        _camera = Camera.main.transform;
+        _previousCameraPosition = _camera.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Vector3 Position = MainCamera.transform.position;
-        float Temp = Position.x * (1 - AmountOfParallax);
-        float Distance = Position.x * AmountOfParallax;
+        Vector3 movement = CameraMovement;
+        if (movement == Vector3.zero) return;
+        _targetPosition = new Vector3(transform.position.x + movement.x * ParallaxAmount, transform.position.y, transform.position.z);
+        transform.position = _targetPosition;
+    }
 
-        Vector3 NewPosition = new Vector3(_startingPos + Distance, transform.position.y, transform.position.z);
-
-        transform.position = NewPosition;
-
-        if (Temp > _startingPos + (_lengthOfSprite / 2))
+    Vector3 CameraMovement
+    {
+        get
         {
-            _startingPos += _lengthOfSprite;
-        }
-        else if (Temp < _startingPos - (_lengthOfSprite / 2))
-        {
-            _startingPos -= _lengthOfSprite;
+            Vector3 movement = _camera.position - _previousCameraPosition;
+            _previousCameraPosition = _camera.position;
+            return movement;
         }
     }
 }
