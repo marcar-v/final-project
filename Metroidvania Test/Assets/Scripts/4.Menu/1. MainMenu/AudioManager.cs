@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioSource _gameplayMusic;
     [SerializeField] AudioSource _mainMenuMusic;
+    [SerializeField] AudioSource _clickSound;
 
     private void Awake()
     {
@@ -21,6 +22,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    public void ClickSound()
+    {
+        _clickSound.Play();
     }
 
     public void GameplayMusic()
