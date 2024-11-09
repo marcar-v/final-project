@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] GameObject _pausePanel;
+    [SerializeField] GameObject _optionsPanel;
 
     public void PausePanel()
     {
         Time.timeScale = 0f;
+        AudioManager.audioManagerInstance.ClickSound();
         _pausePanel.SetActive(true);
     }
     public void ResumeGame()
@@ -19,6 +21,15 @@ public class PauseMenuController : MonoBehaviour
         AudioManager.audioManagerInstance.ClickSound();
         _pausePanel.SetActive(false);
     }
+
+    public void OptionsMenu()
+    {
+        Time.timeScale = 1f;
+        AudioManager.audioManagerInstance.ClickSound();
+        _pausePanel.SetActive(false);
+        _optionsPanel.SetActive(true);
+    }
+
     public void ReturnMainMenu()
     {
         AudioManager.audioManagerInstance.ClickSound();
@@ -26,10 +37,5 @@ public class PauseMenuController : MonoBehaviour
         _pausePanel.SetActive(false);
         AudioManager.audioManagerInstance.MainMenuMusic();
         SceneManager.LoadScene("MainMenu");
-    }
-    public void QuitGame()
-    {
-        AudioManager.audioManagerInstance.ClickSound();
-        Application.Quit();
     }
 }

@@ -14,7 +14,7 @@ public class OptionsMenuController : MonoBehaviour
     [SerializeField] Toggle _fullscreenToggle;
 
     [SerializeField] GameObject _optionsCanvas;
-    [SerializeField] GameObject _mainMenuCanvas;
+    [SerializeField] GameObject _previousMenu;
 
     private void Start()
     {
@@ -68,7 +68,7 @@ public class OptionsMenuController : MonoBehaviour
     public void BackButton()
     {
         _optionsCanvas.SetActive(false);
-        _mainMenuCanvas.SetActive(true);
+        _previousMenu.SetActive(true);
     }
 
 }
