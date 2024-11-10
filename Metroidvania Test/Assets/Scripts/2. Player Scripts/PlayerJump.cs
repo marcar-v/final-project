@@ -42,15 +42,27 @@ public class PlayerJump : PlayerController
             _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
 
-        if (isGrounded() == false)
+        if (!isGrounded())
         {
             _animator.SetBool("Jump", true);
             _animator.SetBool("Run", false);
 
         }
+
         if (isGrounded())
         {
             _animator.SetBool("Jump", false);
+            _animator.SetBool("Fall", false);
+        }
+
+        if(_rb.velocity.y < 0f)
+        {
+            _animator.SetBool("Fall", true);
+        }
+
+        else if (_rb.velocity.y > 0f)
+        {
+            _animator.SetBool("Fall", false);
         }
     }
 }

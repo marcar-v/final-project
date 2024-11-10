@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class BulletPool : MonoBehaviour
 {
+    public static BulletPool bulletPoolInstance;
+
     [SerializeField] int bulletPoolSize = 10;
     [SerializeField] GameObject bullet;
-    [SerializeField] List<GameObject> bulletsPool;
+    [SerializeField] List<GameObject> bulletsPool = new List<GameObject>();
     [SerializeField] int shootNumber = 0;
+
     [SerializeField] GameObject bulletPosition1;
 
+
+    private void Awake()
+    {
+        if (bulletPoolInstance == null)
+        {
+            bulletPoolInstance = this;
+        }
+    }
 
     private void Start()
     {
@@ -23,12 +34,12 @@ public class BulletPool : MonoBehaviour
     }
     public void ShootBullet()
     {
+        bulletsPool[shootNumber].transform.position = bulletPosition1.transform.position;
+        bulletsPool[shootNumber].SetActive(true);
+        shootNumber++;
         if (shootNumber == bulletPoolSize)
         {
             shootNumber = 0;
         }
-        shootNumber++;
-        bulletsPool[shootNumber].transform.position = bulletPosition1.transform.position;
-        bulletsPool[shootNumber].SetActive(true);
     }
 }

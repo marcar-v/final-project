@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerBullets : MonoBehaviour
 {
     int _bulletSpeed = 5;
+    Animator _bulletAnimator;
+
+    private void Awake()
+    {
+        _bulletAnimator = GetComponent<Animator>();
+    }
 
     void OnEnable()
     {
@@ -21,7 +27,16 @@ public class PlayerBullets : MonoBehaviour
     {
         if (collision.tag == "Enemy" || collision.tag == "Ground")
         {
-            gameObject.SetActive(false);
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            _bulletAnimator.SetTrigger("BulletHit");
+
+            StartCoroutine(DeactivateBullet());
         }
+    }
+
+    IEnumerator DeactivateBullet()
+    {
+        yield return new WaitForSeconds(_bulletAnimator.GetCurrentAnimatorStateInfo(0).length);
+        gameObject.SetActive(false);
     }
 }
