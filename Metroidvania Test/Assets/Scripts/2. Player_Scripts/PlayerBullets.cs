@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class PlayerBullets : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D _rb;
-
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
+    int _bulletSpeed = 5;
 
     void OnEnable()
     {
-        _rb.velocity = new Vector2(5f, 0f);
+        GetComponent<Rigidbody2D>().velocity = transform.right * _bulletSpeed;
     }
 
     void OnBecameInvisible()
