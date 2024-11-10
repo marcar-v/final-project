@@ -6,6 +6,14 @@ public class Lives : MonoBehaviour
 {
     [SerializeField] GameObject[] _lives;
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.KeypadEnter))
+        {
+            DeactivateLife(1);
+        }
+    }
+
     public void DeactivateLife(int index)
     {
         _lives[index].SetActive(false);

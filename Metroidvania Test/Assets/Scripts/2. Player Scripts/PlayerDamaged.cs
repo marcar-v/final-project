@@ -14,6 +14,8 @@ public class PlayerDamaged : PlayerController
     float _invulnerabilityDuration = 0.5f;
     bool _isInvulnerable = false;
 
+    bool _isDead;
+
 
     private void Awake()
     {
@@ -26,8 +28,6 @@ public class PlayerDamaged : PlayerController
         {
             Debug.Log("Más de un Player Damaged en escena");
         }
-
-        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -40,7 +40,7 @@ public class PlayerDamaged : PlayerController
         if (!_isInvulnerable)
         {
             _currentLife -= damage;
-            _animator.Play("Player_Hurt");
+            _animator.Play("Hurt");
             _lives.DeactivateLife(_currentLife);
 
             if (_currentLife <= 0)
@@ -67,9 +67,26 @@ public class PlayerDamaged : PlayerController
         Debug.Log("Jugador vulnerable de nuevo.");
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") /*|| 
+            collision.gameObject.CompareTag("EnemyBullet")*/)
+        {
+            PlayerIsDamaged(1);
+            PlayerDeath();
+        }
+    }
+
     void PlayerDeath()
     {
-        Debug.Log("Player Muerto");
+        if (_currentLife== 0)
+        {
+            _isDead = true;
+
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            gameObject.SetActive(false);
+        }
         Invoke("RestartGame", 1.5f);
     }
 
