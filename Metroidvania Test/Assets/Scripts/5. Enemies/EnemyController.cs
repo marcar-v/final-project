@@ -6,9 +6,10 @@ public class EnemyController : MonoBehaviour
 {
     protected int _enemyDamage;
     protected Animator _enemyAnimator;
-    protected int _enemyLives;
+    [SerializeField] protected int _enemyLives;
     protected SpriteRenderer _enemySpriteRenderer;
-    protected float _enemySpeed;
+    [SerializeField] protected float _enemySpeed;
+    protected BoxCollider2D _enemyBoxCollider;
 
     private void Awake()
     {
@@ -22,5 +23,29 @@ public class EnemyController : MonoBehaviour
         {
             collision.transform.GetComponent<PlayerDamaged>().PlayerIsDamaged(_enemyDamage);
         }
+        if (collision.gameObject.CompareTag("PlayerBullet"))
+        {
+            LoseLifeAndHit();
+            CheckLife();
+        }
+    }
+
+    public virtual void LoseLifeAndHit()
+    {
+        _enemyLives--;
+    }
+
+    public virtual void CheckLife()
+    {
+        if (_enemyLives == 0)
+        {
+            Invoke("EnemyDie", 5f);
+        }
+    }
+
+
+    public virtual void EnemyDie()
+    {
+        Destroy(gameObject);
     }
 }

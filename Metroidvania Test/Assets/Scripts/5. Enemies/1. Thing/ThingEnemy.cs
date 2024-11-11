@@ -13,7 +13,11 @@ public class ThingEnemy : EnemyController
     private int _i = 0;
     private Vector2 _actualPosition;
 
-    public void Awake()
+    bool _enemyIsDead = false;
+
+    [SerializeField] Animator _animator;
+    
+    private void Awake()
     {
         _target = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -21,13 +25,14 @@ public class ThingEnemy : EnemyController
     private void Start()
     {
         _waitTime = startWaitTime;
+        _enemyLives = 2;
     }
 
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
         EnemyMovement();
     }
-    public void EnemyMovement()
+    private void EnemyMovement()
     {
         StartCoroutine(CheckEnemyMovement());
 
@@ -39,10 +44,8 @@ public class ThingEnemy : EnemyController
         {
             if (_waitTime <= 0)
             {
-                Debug.Log("Current Wait Time: " + _waitTime);
                 if (wayPoints[_i] != wayPoints[wayPoints.Length - 1])
                 {
-                    Debug.Log("Current Waypoint Index:" + _i);
                     _i++;
                 }
                 else
@@ -58,7 +61,7 @@ public class ThingEnemy : EnemyController
         }
     }
 
-    public virtual IEnumerator CheckEnemyMovement()
+    private IEnumerator CheckEnemyMovement()
     {
         _actualPosition = transform.position;
         yield return new WaitForSeconds(0.5f);
@@ -73,40 +76,42 @@ public class ThingEnemy : EnemyController
         {
             _enemySpriteRenderer.flipX = false;
         }
-        //else if (transform.position.x == _actualPosition.x)
-        //{
-        //    _enemyAnimator.Play("ThingAnim");
-        //}
-
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void LoseLifeAndHit()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        base.LoseLifeAndHit();
+        _animator.SetTrigger("HurtEnemy");
+        StartCoroutine(ForceResetTrigger());
+    }
+
+    public override void CheckLife()
+    {
+        base.CheckLife();
+        if (_enemyLives == 0 && !_enemyIsDead)
         {
-            //collision.gameObject.GetComponent<Rigidbody2D>().velocity = (Vector2.up * jumpForce);
-            LoseLifeAndHit();
-            CheckLife();
+            _enemyIsDead = true;
+            _animator.SetTrigger("EnemyDeath");
+            StartCoroutine(DeactiveAfterAnimation());
         }
     }
-
-    public virtual void LoseLifeAndHit()
+    private IEnumerator ForceResetTrigger()
     {
-        _enemyLives--;
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+        _animator.CrossFade("ThingAnim", 0.01f); // Reemplaza "Idle" con el nombre exacto del estado Idle en tu Animator
     }
 
-    public virtual void CheckLife()
+    private IEnumerator DeactiveAfterAnimation()
     {
-        if (_enemyLives == 0)
-        {
-            //destroyParticle.SetActive(true);
-            _enemySpriteRenderer.enabled = false;
-            Invoke("EnemyDie", 0.2f);
-        }
+        float _animationLength = _animator.GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log("Duración de la animación de muerte: " + _animationLength);
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log("Animación de muerte terminada");
+        gameObject.SetActive(false);
     }
 
-    public virtual void EnemyDie()
+    public override void EnemyDie()
     {
-        Destroy(gameObject);
+        base.EnemyDie();
     }
 }

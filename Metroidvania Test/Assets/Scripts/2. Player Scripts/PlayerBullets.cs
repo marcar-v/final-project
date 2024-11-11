@@ -23,9 +23,9 @@ public class PlayerBullets : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag == "Enemy" || collision.tag == "Ground")
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Ground"))
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             _bulletAnimator.SetTrigger("BulletHit");

@@ -5193,10 +5193,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e6ebdcd51243948a7527f3f4f13892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyLives: 0
+  _enemySpeed: 0
   wayPoints:
   - {fileID: 733776395}
   - {fileID: 1796430758}
   startWaitTime: 2
+  _animator: {fileID: 1405424442}
 --- !u!1 &1446417849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5410,9 +5413,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lives:
-  - {fileID: 152419238}
-  - {fileID: 2005505171}
   - {fileID: 1915924718}
+  - {fileID: 2005505171}
+  - {fileID: 152419238}
 --- !u!1001 &1529834371
 PrefabInstance:
   m_ObjectHideFlags: 0
