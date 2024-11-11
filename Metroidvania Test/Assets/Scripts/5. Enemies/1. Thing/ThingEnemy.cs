@@ -7,8 +7,8 @@ public class ThingEnemy : EnemyController
     Transform _target;
 
     [Header("Movement")]
-    [SerializeField] protected Transform[] wayPoints;
-    [SerializeField] float startWaitTime = 2f;
+    [SerializeField] Transform[] wayPoints;
+    [SerializeField] float startWaitTime = 1f;
     private float _waitTime;
     private int _i = 0;
     private Vector2 _actualPosition;
@@ -18,11 +18,16 @@ public class ThingEnemy : EnemyController
         _target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
+    private void Start()
+    {
+        _waitTime = startWaitTime;
+    }
+
     public void FixedUpdate()
     {
         EnemyMovement();
     }
-    public virtual void EnemyMovement()
+    public void EnemyMovement()
     {
         StartCoroutine(CheckEnemyMovement());
 
@@ -30,24 +35,26 @@ public class ThingEnemy : EnemyController
 
         transform.position = Vector2.MoveTowards(transform.position, wayPoints[_i].transform.position, _enemySpeed * Time.deltaTime);
 
-        if (Vector2.Distance(transform.position, wayPoints[_i].transform.position) < 0.1f)
+        if (Vector2.Distance(transform.position, wayPoints[_i].transform.position) < 0.5f)
         {
             if (_waitTime <= 0)
             {
+                Debug.Log("Current Wait Time: " + _waitTime);
                 if (wayPoints[_i] != wayPoints[wayPoints.Length - 1])
                 {
+                    Debug.Log("Current Waypoint Index:" + _i);
                     _i++;
                 }
                 else
                 {
                     _i = 0;
                 }
-                //_waitTime = startWaitTime;
+                _waitTime = startWaitTime;
             }
-            //else
-            //{
-            //    _waitTime -= Time.deltaTime;
-            //}
+            else
+            {
+                _waitTime -= Time.deltaTime;
+            }
         }
     }
 
