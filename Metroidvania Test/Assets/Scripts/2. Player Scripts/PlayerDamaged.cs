@@ -17,6 +17,8 @@ public class PlayerDamaged : PlayerController
     bool _isDead;
 
 
+    Animator _anim;
+
     private void Awake()
     {
         if (_playerDamagedInstance == null)
@@ -28,6 +30,8 @@ public class PlayerDamaged : PlayerController
         {
             Debug.Log("Más de un Player Damaged en escena");
         }
+
+        _anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -40,17 +44,17 @@ public class PlayerDamaged : PlayerController
         if (!_isInvulnerable)
         {
             _currentLife -= damage;
-            _animator.Play("Hurt");
+            _anim.SetBool("Hurt", true);
             _lives.DeactivateLife(_currentLife);
 
             if (_currentLife <= 0)
             {
-                _animator.SetBool("Death", true);
+                _anim.SetBool("Death", true);
                 PlayerDeath();
             }
             else
             {
-                _animator.SetBool("Hurt", false);
+                _anim.SetBool("Hurt", false);
                 StartCoroutine(InvulnerabilityCoroutine());
             }
         }
@@ -73,7 +77,7 @@ public class PlayerDamaged : PlayerController
             collision.gameObject.CompareTag("EnemyBullet")*/)
         {
             PlayerIsDamaged(1);
-            PlayerDeath();
+            //PlayerDeath();
         }
     }
 

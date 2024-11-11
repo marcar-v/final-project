@@ -8,9 +8,10 @@ public class Lives : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.KeypadEnter))
+        if (Input.GetKey(KeyCode.M))
         {
-            DeactivateLife(1);
+            Debug.Log("shkjs");
+            DeactivateLife(0);
         }
     }
 
