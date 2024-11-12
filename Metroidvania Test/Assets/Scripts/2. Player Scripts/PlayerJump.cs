@@ -10,6 +10,13 @@ public class PlayerJump : PlayerController
     int _totalJumps = 1;
     int _remainingJumps;
 
+    PlayerCrouch _playerCrouchScript;
+
+    private void Awake()
+    {
+        _playerCrouchScript = GetComponent<PlayerCrouch>();
+    }
+
     private void Start()
     {
         _remainingJumps = _totalJumps;
@@ -18,7 +25,11 @@ public class PlayerJump : PlayerController
 
     private void Update()
     {
-        Jump();
+        _isCrouching = _playerCrouchScript.IsCrouching();
+        if (!_isCrouching) 
+        {
+            Jump();
+        }
     }
 
     bool isGrounded()

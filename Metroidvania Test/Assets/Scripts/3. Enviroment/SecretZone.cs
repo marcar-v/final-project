@@ -6,9 +6,9 @@ using UnityEngine.Tilemaps;
 public class SecretZone : MonoBehaviour
 {
     Tilemap _tilemap;
-    private Color _originalColor;
-    public float hiddenAlpha = 0.2f; // Transparencia cuando la zona está oculta
-    public float visibleAlpha = 1.0f; // Transparencia cuando la zona es visible
+    Color _originalColor;
+    float hiddenAlpha = 0.2f;
+    float visibleAlpha = 1.0f;
 
     private void Start()
     {
@@ -23,8 +23,8 @@ public class SecretZone : MonoBehaviour
     // Se ejecuta cuando el jugador entra en la zona secreta
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Asegúrate de que el jugador tiene el tag "Player"
-        {
+        if (other.CompareTag("Player"))
+        { 
             SetTransparency(hiddenAlpha);
         }
     }

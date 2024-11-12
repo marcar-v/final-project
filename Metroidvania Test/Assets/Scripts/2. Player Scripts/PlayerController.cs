@@ -6,14 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     protected float _speed = 1.5f;
     protected float _runSpeed;
-    protected Rigidbody2D _rb;
+    [SerializeField] protected Rigidbody2D _rb;
     protected SpriteRenderer _spriteRenderer;
-    protected Animator _animator;
+    [SerializeField] protected Animator _animator;
 
+    protected bool _isCrouching = false;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponent<Animator>();
     }
+
 }

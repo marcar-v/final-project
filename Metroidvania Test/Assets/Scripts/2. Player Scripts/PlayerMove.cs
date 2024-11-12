@@ -1,11 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : PlayerController
 {
     bool _isFacingRight = true;
-    private void FixedUpdate()
+
+    PlayerCrouch _playerCrouchScript;
+
+    private void Awake()
+    {
+        _playerCrouchScript = GetComponent<PlayerCrouch>();
+        _isCrouching = _playerCrouchScript.IsCrouching();
+    }
+    private void Update()
+    {
+        if (!_isCrouching)
+        {
+            PlayerMovement();
+        }
+        else
+        {
+            _runSpeed = 0;
+            _animator.SetBool("Run", false);
+        }
+    }
+
+    private void PlayerMovement()
     {
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -26,6 +45,7 @@ public class PlayerMove : PlayerController
             _runSpeed = 0;
             _animator.SetBool("Run", false);
         }
+
         transform.position = new Vector2(transform.position.x + _runSpeed * _speed * Time.deltaTime, transform.position.y);
     }
 
