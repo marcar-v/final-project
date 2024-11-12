@@ -5,11 +5,17 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     protected int _enemyDamage;
-    protected Animator _enemyAnimator;
+    [SerializeField] protected Animator _enemyAnimator;
     [SerializeField] protected int _enemyLives;
     protected SpriteRenderer _enemySpriteRenderer;
     [SerializeField] protected float _enemySpeed;
-    protected BoxCollider2D _enemyBoxCollider;
+    [SerializeField]protected Rigidbody2D _enemyRigidbody;
+
+    [SerializeField] GameObject _enemyDeathAnim;
+
+    bool _enemyIsDead = false;
+
+    int _playerBulletDamage = 1;
 
     private void Awake()
     {
@@ -25,24 +31,50 @@ public class EnemyController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            LoseLifeAndHit();
+            LoseLife(_playerBulletDamage);
+            //LoseLifeAndHit();
             CheckLife();
         }
     }
 
-    public virtual void LoseLifeAndHit()
+
+    public virtual void LoseLife(int damage)
     {
-        _enemyLives--;
+        _enemyLives -= damage;
+        _enemyAnimator.SetTrigger("HurtEnemy");
+        StartCoroutine(ForceResetTrigger());
+
+    }
+    //public virtual void LoseLifeAndHit()
+    //{
+    //    _enemyLives--;
+    //    _enemyAnimator.SetTrigger("HurtEnemy");
+    //    StartCoroutine(ForceResetTrigger());
+    //}
+
+    private IEnumerator ForceResetTrigger()
+    {
+        yield return new WaitForSeconds(_enemyAnimator.GetCurrentAnimatorStateInfo(0).length);
+        _enemyAnimator.CrossFade("ThingAnim", 0.01f);
     }
 
     public virtual void CheckLife()
     {
-        if (_enemyLives == 0)
+        if (_enemyLives <= 0 && !_enemyIsDead)
         {
-            Invoke("EnemyDie", 5f);
+            _enemyIsDead = true;
+            _enemyRigidbody.velocity = Vector2.zero;
+            _enemySpriteRenderer.enabled = false;
+            PlayDeadAnimation();
+
+            Invoke("EnemyDie", 1f);
         }
     }
 
+    public virtual void PlayDeadAnimation()
+    {
+        Instantiate(_enemyDeathAnim, transform.position, Quaternion.identity);
+    }
 
     public virtual void EnemyDie()
     {

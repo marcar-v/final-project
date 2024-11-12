@@ -13,8 +13,6 @@ public class ThingEnemy : EnemyController
     private int _i = 0;
     private Vector2 _actualPosition;
 
-    bool _enemyIsDead = false;
-
     [SerializeField] Animator _animator;
     
     private void Awake()
@@ -78,38 +76,16 @@ public class ThingEnemy : EnemyController
         }
     }
 
-    public override void LoseLifeAndHit()
-    {
-        base.LoseLifeAndHit();
-        _animator.SetTrigger("HurtEnemy");
-        StartCoroutine(ForceResetTrigger());
-    }
+    //public override void LoseLife()
+    //{
+    //    base.LoseLife();
+    //}
 
     public override void CheckLife()
     {
         base.CheckLife();
-        if (_enemyLives == 0 && !_enemyIsDead)
-        {
-            _enemyIsDead = true;
-            _animator.SetTrigger("EnemyDeath");
-            StartCoroutine(DeactiveAfterAnimation());
-        }
-    }
-    private IEnumerator ForceResetTrigger()
-    {
-        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-        _animator.CrossFade("ThingAnim", 0.01f); // Reemplaza "Idle" con el nombre exacto del estado Idle en tu Animator
-    }
 
-    private IEnumerator DeactiveAfterAnimation()
-    {
-        float _animationLength = _animator.GetCurrentAnimatorStateInfo(0).length;
-        Debug.Log("Duración de la animación de muerte: " + _animationLength);
-        yield return new WaitForSeconds(1.5f);
-        Debug.Log("Animación de muerte terminada");
-        gameObject.SetActive(false);
     }
-
     public override void EnemyDie()
     {
         base.EnemyDie();

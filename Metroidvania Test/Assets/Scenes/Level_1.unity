@@ -5193,8 +5193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e6ebdcd51243948a7527f3f4f13892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyAnimator: {fileID: 1405424442}
   _enemyLives: 0
   _enemySpeed: 0
+  _enemyRigidbody: {fileID: 1405424441}
+  _enemyDeathAnim: {fileID: 3703909135272085709, guid: 6b2c0684ba1359a46b265bfebee34059, type: 3}
   wayPoints:
   - {fileID: 733776395}
   - {fileID: 1796430758}
