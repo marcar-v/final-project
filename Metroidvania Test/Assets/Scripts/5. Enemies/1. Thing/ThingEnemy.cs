@@ -75,19 +75,4 @@ public class ThingEnemy : EnemyController
             _enemySpriteRenderer.flipX = false;
         }
     }
-
-    //public override void LoseLife()
-    //{
-    //    base.LoseLife();
-    //}
-
-    public override void CheckLife()
-    {
-        base.CheckLife();
-
-    }
-    public override void EnemyDie()
-    {
-        base.EnemyDie();
-    }
 }

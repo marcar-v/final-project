@@ -45,12 +45,6 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(ForceResetTrigger());
 
     }
-    //public virtual void LoseLifeAndHit()
-    //{
-    //    _enemyLives--;
-    //    _enemyAnimator.SetTrigger("HurtEnemy");
-    //    StartCoroutine(ForceResetTrigger());
-    //}
 
     private IEnumerator ForceResetTrigger()
     {
@@ -67,7 +61,7 @@ public class EnemyController : MonoBehaviour
             _enemySpriteRenderer.enabled = false;
             PlayDeadAnimation();
 
-            Invoke("EnemyDie", 1f);
+            Invoke("EnemyDie", 0.5f);
         }
     }
 
