@@ -9,10 +9,11 @@ public class PlayerMove : PlayerController
     private void Awake()
     {
         _playerCrouchScript = GetComponent<PlayerCrouch>();
-        _isCrouching = _playerCrouchScript.IsCrouching();
     }
     private void Update()
     {
+        _isCrouching = _playerCrouchScript.IsCrouching();
+
         if (!_isCrouching)
         {
             PlayerMovement();

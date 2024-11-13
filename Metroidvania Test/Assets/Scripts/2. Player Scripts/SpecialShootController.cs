@@ -50,6 +50,7 @@ public class SpecialShootController : MonoBehaviour
             else // Si el personaje está mirando a la derecha
             {
                 rb.velocity = Vector2.right * bulletSpeed;
+                _bulletSpriteRenderer.flipX = false;
             }
         }
 

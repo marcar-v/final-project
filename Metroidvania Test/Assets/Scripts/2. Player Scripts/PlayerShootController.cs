@@ -20,7 +20,7 @@ public class PlayerShootController : MonoBehaviour
     {
         _isCrouching = _playerCrouch.GetComponent<PlayerCrouch>().IsCrouching();
 
-        if(!_isCrouching)
+        if (!_isCrouching)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && Time.timeScale > 0 && !_isSpecialShooting)
             {
