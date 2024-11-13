@@ -72,15 +72,15 @@ TagManager:
   - name: Ground
     uniqueID: 2695407675
     locked: 0
+  - name: Water
+    uniqueID: 186590321
+    locked: 0
+  - name: Enemy
+    uniqueID: 1419930027
+    locked: 0
   - name: Player
     uniqueID: 3572217937
     locked: 0
   - name: SecretZone
     uniqueID: 2442493673
-    locked: 0
-  - name: Enemy
-    uniqueID: 1419930027
-    locked: 0
-  - name: Water
-    uniqueID: 186590321
     locked: 0
