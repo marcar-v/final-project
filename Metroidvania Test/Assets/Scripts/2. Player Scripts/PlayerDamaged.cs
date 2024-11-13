@@ -83,7 +83,7 @@ public class PlayerDamaged : PlayerController
 
     void PlayerDeath()
     {
-        if (_currentLife== 0)
+        if (_currentLife <= 0)
         {
             _isDead = true;
 

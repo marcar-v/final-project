@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - ScoreText
   - Coins
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -79,4 +80,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 1419930027
+    locked: 0
+  - name: Water
+    uniqueID: 186590321
     locked: 0
