@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class ChestController : MonoBehaviour
 {
-    CircleCollider2D _triggerCollider;
+    CapsuleCollider2D _triggerCollider;
     [SerializeField] Animator _chestAnim;
 
 
     [SerializeField] Animator _heartAnimator;
     [SerializeField] SpriteRenderer _heartSprite;
     [SerializeField] Transform _heartTransform;
+    [SerializeField] BoxCollider2D _heartCollider;
     bool _heartReleased;
 
     private void Awake()
     {
-        _triggerCollider = this.GetComponent<CircleCollider2D>();
+        _triggerCollider = this.GetComponent<CapsuleCollider2D>();
         _chestAnim = this.GetComponent<Animator>();
     }
 
@@ -49,6 +50,7 @@ public class ChestController : MonoBehaviour
     void ShowHeart()
     {
         _heartSprite.enabled = true;
+        _heartCollider.enabled = true;
         _heartAnimator.SetBool("Exit", true);
 
         StartCoroutine(HeartStandsController());
