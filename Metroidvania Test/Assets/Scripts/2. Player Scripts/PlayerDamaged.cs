@@ -16,8 +16,8 @@ public class PlayerDamaged : PlayerController
 
     bool _isDead;
 
-
     Animator _anim;
+    [SerializeField] CapsuleCollider2D _playerCollider;
 
     private void Awake()
     {
@@ -44,17 +44,19 @@ public class PlayerDamaged : PlayerController
         if (!_isInvulnerable)
         {
             _currentLife -= damage;
-            _anim.SetBool("Hurt", true);
+
             _lives.DeactivateLife(_currentLife);
 
-            if (_currentLife <= 0)
+            if (_currentLife <= 0 && !_isDead)
             {
-                _anim.SetBool("Death", true);
-                PlayerDeath();
+                _isDead = true;
+                _anim.SetTrigger("Death");
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), true);
+                Invoke("PlayerDeath", 1.5f);
             }
-            else
+            else if(!_isDead)
             {
-                _anim.SetBool("Hurt", false);
+                _anim.SetTrigger("Hurt");
                 StartCoroutine(InvulnerabilityCoroutine());
             }
         }
@@ -81,19 +83,16 @@ public class PlayerDamaged : PlayerController
 
     void PlayerDeath()
     {
-        if (_currentLife <= 0)
+        if (_currentLife <= 0 && _isDead == true)
         {
-            _isDead = true;
-
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-
             gameObject.SetActive(false);
         }
-        Invoke("RestartGame", 1.5f);
+        Invoke("RestartGame", 2f);
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        TransitionController._transitionInstance.ReloadCurrentScene();
     }
 }

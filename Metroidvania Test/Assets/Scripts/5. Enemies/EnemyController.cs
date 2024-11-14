@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    protected int _enemyDamage;
+    protected int _enemyDamage = 1;
     [SerializeField] protected Animator _enemyAnimator;
     [SerializeField] protected int _enemyLives;
     protected SpriteRenderer _enemySpriteRenderer;

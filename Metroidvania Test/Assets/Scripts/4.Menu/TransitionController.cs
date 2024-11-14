@@ -40,4 +40,21 @@ public class TransitionController : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
         _transitionAnimator.SetTrigger("End");
     }
+
+    public void ReloadCurrentScene()
+    {
+        int _nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        StartCoroutine(ReloadScene());
+    }
+
+    public IEnumerator ReloadScene()
+    {
+        //Trigger para reproducir efecto fade in
+        _transitionAnimator.SetTrigger("Start");
+        //Esperar un segundo
+        yield return new WaitForSeconds(_transitionTime);
+        //Cargar escena
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        _transitionAnimator.SetTrigger("End");
+    }
 }

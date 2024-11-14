@@ -253,7 +253,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -722749359
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: -1984379354, guid: e5cfa9c48ee4d4b7694945b4c8f1c595, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -402,6 +402,7 @@ MonoBehaviour:
   _animator: {fileID: 1176645090727388584}
   _maxLife: 3
   _lives: {fileID: 0}
+  _playerCollider: {fileID: 8414146204968709344}
 --- !u!114 &2074344311191633145
 MonoBehaviour:
   m_ObjectHideFlags: 0
