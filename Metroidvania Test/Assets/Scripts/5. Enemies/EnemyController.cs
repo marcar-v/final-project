@@ -32,7 +32,6 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             LoseLife(_playerBulletDamage);
-            //LoseLifeAndHit();
             CheckLife();
         }
     }
@@ -42,14 +41,6 @@ public class EnemyController : MonoBehaviour
     {
         _enemyLives -= damage;
         _enemyAnimator.SetTrigger("HurtEnemy");
-        StartCoroutine(ForceResetTrigger());
-
-    }
-
-    private IEnumerator ForceResetTrigger()
-    {
-        yield return new WaitForSeconds(_enemyAnimator.GetCurrentAnimatorStateInfo(0).length);
-        _enemyAnimator.CrossFade("ThingAnim", 0.01f);
     }
 
     public virtual void CheckLife()

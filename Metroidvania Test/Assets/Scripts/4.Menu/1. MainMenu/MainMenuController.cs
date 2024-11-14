@@ -10,8 +10,8 @@ public class MainMenuController : MonoBehaviour
     public void PlayGame()
     {
         AudioManager.audioManagerInstance.ClickSound();
-        SceneManager.LoadScene("Level_1");
         AudioManager.audioManagerInstance.GameplayMusic();
+        TransitionController._transitionInstance.LoadNextScene();
     }
 
     public void OptionsMenu()

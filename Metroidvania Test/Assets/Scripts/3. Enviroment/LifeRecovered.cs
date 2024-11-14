@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LifeRecovered : MonoBehaviour
 {
-    [SerializeField] Lives _lives;
     private int lives = 3;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,7 +25,7 @@ public class LifeRecovered : MonoBehaviour
             return false;
         }
 
-        _lives.ActivateLife(lives);
+        Lives._livesInstance.ActivateLife(lives);
         lives += 1;
 
         return true;

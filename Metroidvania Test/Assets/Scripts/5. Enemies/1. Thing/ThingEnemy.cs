@@ -75,4 +75,18 @@ public class ThingEnemy : EnemyController
             _enemySpriteRenderer.flipX = false;
         }
     }
+
+    public override void LoseLife(int damage)
+    {
+        base.LoseLife(damage);
+        StartCoroutine(ForceResetTrigger());
+    }
+
+
+    private IEnumerator ForceResetTrigger()
+    {
+        yield return new WaitForSeconds(_enemyAnimator.GetCurrentAnimatorStateInfo(0).length);
+        _enemyAnimator.CrossFade("ThingAnim", 0.01f);
+    }
+
 }

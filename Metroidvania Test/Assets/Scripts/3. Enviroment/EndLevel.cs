@@ -10,7 +10,7 @@ public class EndLevel : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            TransitionController._transitionInstance.LoadNextScene();
         }
     }
 }
