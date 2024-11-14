@@ -12,8 +12,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void PausePanel()
     {
-        //_player.GetComponentInChildren<PlayerShootController>().enabled = false;
-        //_player.GetComponent<PlayerController>().enabled = false;
+        _player.GetComponentInChildren<PlayerShootController>().enabled = false;
+        _player.GetComponent<PlayerController>().enabled = false;
 
         Time.timeScale = 0f;
         AudioManager.audioManagerInstance.ClickSound();
@@ -32,8 +32,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void OptionsMenu()
     {
-        //_player.GetComponentInChildren<PlayerShootController>().enabled = false;
-        //_player.GetComponent<PlayerMove>().enabled = false;
+        _player.GetComponentInChildren<PlayerShootController>().enabled = false;
+        _player.GetComponent<PlayerMove>().enabled = false;
 
         Time.timeScale = 0f;
         AudioManager.audioManagerInstance.ClickSound();
@@ -43,8 +43,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void ReturnMainMenu()
     {
-        //_player.GetComponentInChildren<PlayerShootController>().enabled = false;
-        //_player.GetComponent<PlayerMove>().enabled = false;
+        _player.GetComponentInChildren<PlayerShootController>().enabled = false;
+        _player.GetComponent<PlayerMove>().enabled = false;
 
         AudioManager.audioManagerInstance.ClickSound();
         Time.timeScale = 1f;

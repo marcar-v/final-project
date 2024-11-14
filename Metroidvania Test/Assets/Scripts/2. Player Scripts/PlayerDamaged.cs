@@ -7,7 +7,7 @@ public class PlayerDamaged : PlayerController
 {
     public static PlayerDamaged _playerDamagedInstance;
 
-    public int _maxLife = 3;
+    public int _maxLife = 5;
     int _currentLife;
     [SerializeField] Lives _lives;
 
@@ -45,7 +45,7 @@ public class PlayerDamaged : PlayerController
         {
             _currentLife -= damage;
 
-            _lives.DeactivateLife(_currentLife);
+            _lives.LivesRemove(1);
 
             if (_currentLife <= 0 && !_isDead)
             {

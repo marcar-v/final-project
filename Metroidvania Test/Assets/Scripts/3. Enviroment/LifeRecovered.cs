@@ -4,30 +4,18 @@ using UnityEngine;
 
 public class LifeRecovered : MonoBehaviour
 {
-    private int lives = 3;
+    int _maxLives = 5;
+    int _currentLives;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
-            if(LifeAdded())
+            if (_currentLives < _maxLives)
             {
+                Lives._livesInstance.LivesAdd(1);
                 Destroy(gameObject);
             }
         }
-    }
-
-
-    bool LifeAdded()
-    {
-        if(lives >= 5)
-        {
-            return false;
-        }
-
-        Lives._livesInstance.ActivateLife(lives);
-        lives += 1;
-
-        return true;
     }
 }

@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected Rigidbody2D _rb;
     protected SpriteRenderer _spriteRenderer;
     [SerializeField] protected Animator _animator;
-    protected CapsuleCollider2D _playerCollider;
 
     protected bool _isCrouching = false;
     private void Awake()
