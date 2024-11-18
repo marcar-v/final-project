@@ -27,16 +27,22 @@ public class PlayerMove : PlayerController
 
     private void PlayerMovement()
     {
+        Vector2 movement = Vector2.zero;
+
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
+            Debug.Log("Move right detected");
             _runSpeed = 1;
+            movement.x = _runSpeed * _speed;
             FlipCharacter();
             _animator.SetBool("Run", true);
         }
 
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
+            Debug.Log("Move left detected");
             _runSpeed = -1;
+            movement.x = _runSpeed * _speed;
             FlipCharacter();
             _animator.SetBool("Run", true);
         }
@@ -47,7 +53,8 @@ public class PlayerMove : PlayerController
             _animator.SetBool("Run", false);
         }
 
-        transform.position = new Vector2(transform.position.x + _runSpeed * _speed * Time.deltaTime, transform.position.y);
+        _rb.velocity = new Vector2(movement.x, _rb.velocity.y);
+        //transform.position = new Vector2(transform.position.x + _runSpeed * _speed * Time.deltaTime, transform.position.y);
     }
 
     private void FlipCharacter()

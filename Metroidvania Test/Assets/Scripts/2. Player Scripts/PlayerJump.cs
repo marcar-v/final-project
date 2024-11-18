@@ -44,6 +44,8 @@ public class PlayerJump : PlayerController
         if (isGrounded())
         {
             _remainingJumps = _totalJumps;
+            _animator.SetBool("Jump", false);
+            _animator.SetBool("Fall", false);
         }
         if (Input.GetKeyDown(KeyCode.Space) && _remainingJumps > 0)
         {
@@ -51,6 +53,13 @@ public class PlayerJump : PlayerController
             _remainingJumps--;
             _rb.velocity = new Vector2(_rb.velocity.x, 0f);
             _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            _animator.SetBool("Jump", true);
+        }
+
+        if (_rb.velocity.y < 0f && !isGrounded())
+        {
+            _animator.SetBool("Fall", true);
+            _animator.SetBool("Jump", false);
         }
 
         if (!isGrounded())
@@ -66,7 +75,7 @@ public class PlayerJump : PlayerController
             _animator.SetBool("Fall", false);
         }
 
-        if(_rb.velocity.y < 0f)
+        if (_rb.velocity.y < 0f)
         {
             _animator.SetBool("Fall", true);
         }
