@@ -34,7 +34,6 @@ public class AggroState : MonoBehaviour
     void Attack()
     {
         anim.Play("Wizard_Attack");
-        //Invoke("Shoot", 0.75f);
     }
 
     public void Shoot()

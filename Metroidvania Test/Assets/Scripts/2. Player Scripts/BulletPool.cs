@@ -11,7 +11,7 @@ public class BulletPool : MonoBehaviour
     [SerializeField] List<GameObject> bulletsPool = new List<GameObject>();
     [SerializeField] int shootNumber = 0;
 
-    [SerializeField] GameObject bulletPosition1;
+    [SerializeField] List<Transform> bulletPositions = new List<Transform>();
 
 
     private void Awake()
@@ -34,12 +34,25 @@ public class BulletPool : MonoBehaviour
     }
     public void ShootBullet()
     {
-        bulletsPool[shootNumber].transform.position = bulletPosition1.transform.position;
-        bulletsPool[shootNumber].SetActive(true);
-        shootNumber++;
-        if (shootNumber == bulletPoolSize)
+        foreach (Transform bulletPosition in bulletPositions) // Iterar por cada punto de disparo
         {
-            shootNumber = 0;
+            // Si todas las balas están activas, reinicia el contador
+            if (shootNumber >= bulletPoolSize)
+            {
+                shootNumber = 0;
+            }
+
+            // Toma una bala del pool
+            GameObject currentBullet = bulletsPool[shootNumber];
+
+            // Configura su posición y activa la bala
+            currentBullet.transform.position = bulletPosition.position;
+            currentBullet.transform.rotation = bulletPosition.rotation; // Opcional: ajusta la rotación si es necesario
+            currentBullet.SetActive(true);
+
+            // Incrementa el índice del pool
+            shootNumber++;
+
         }
     }
 }

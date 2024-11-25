@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public static EnemyController instance;
+
     protected int _enemyDamage = 1;
     [SerializeField] protected Animator _enemyAnimator;
     [SerializeField] protected int _enemyLives;
@@ -23,6 +25,8 @@ public class EnemyController : MonoBehaviour
     private float _waitTime;
     private int _i = 0;
     private Vector2 _actualPosition;
+    protected float _initialWaitTime;
+    protected bool _canMove = false;
 
     private void Awake()
     {
@@ -48,6 +52,13 @@ public class EnemyController : MonoBehaviour
     }
 
     #region EnemyMovement
+
+    public virtual IEnumerator StartMovementAfterDelay(float initialWaitTime)
+    {
+        _initialWaitTime = initialWaitTime;
+        yield return new WaitForSeconds(_initialWaitTime);
+        _canMove = true;
+    }
 
     public virtual void EnemyMovement()
     {
@@ -93,6 +104,21 @@ public class EnemyController : MonoBehaviour
         {
             _enemySpriteRenderer.flipX = false;
         }
+    }
+    public bool IsAtWaypoint(int waypointIndex)
+    {
+        if (waypointIndex < 0 || waypointIndex >= wayPoints.Length)
+        {
+            Debug.LogWarning("El índice del waypoint está fuera de rango.");
+            return false;
+        }
+
+        return Vector2.Distance(transform.position, wayPoints[waypointIndex].position) < 0.5f;
+    }
+
+    public void StopMovement()
+    {
+        _canMove = false;
     }
     #endregion
     public virtual void LoseLife(int damage)

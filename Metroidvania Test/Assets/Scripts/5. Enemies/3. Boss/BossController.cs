@@ -14,11 +14,7 @@ public class BossController : EnemyController
     private void Start()
     {
         _enemyLives = 10;
-    }
-
-    private void FixedUpdate()
-    {
-        EnemyMovement();
+        _initialWaitTime = 2.5f;
     }
 
     public override void LoseLife(int damage)
