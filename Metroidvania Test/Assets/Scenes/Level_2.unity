@@ -11554,7 +11554,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pausePanel: {fileID: 9091213457998463755}
   _optionsPanel: {fileID: 6272382258371027240}
-  _player: {fileID: 5194648250583535790}
 --- !u!114 &3666592015583813226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12049,11 +12048,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
---- !u!1 &5194648250583535790 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4301931599998260238, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
-  m_PrefabInstance: {fileID: 5194648250583535789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5233821324661659755
 RectTransform:
   m_ObjectHideFlags: 0

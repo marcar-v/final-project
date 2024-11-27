@@ -1875,11 +1875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af370c87a7200614083009f4ef8c9d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1224000547 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8649523788557346772, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
-  m_PrefabInstance: {fileID: 5194648250583535789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1232445152 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2586336672670170772, guid: ef14569a78330f74598c22f36d0779e2, type: 3}
@@ -7672,7 +7667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2081320021
 Transform:
   m_ObjectHideFlags: 0
@@ -9757,10 +9752,6 @@ PrefabInstance:
       propertyPath: _lives
       value: 
       objectReference: {fileID: 708762319733843576}
-    - target: {fileID: 204372436207167772, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
-      propertyPath: _maxLife
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1279908900963822448, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.119
@@ -9801,25 +9792,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1602250745244632231, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
-      propertyPath: bulletPositions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1602250745244632231, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
-      propertyPath: bulletPositions.Array.data[0]
-      value: 
-      objectReference: {fileID: 1224000547}
-    - target: {fileID: 3025696035220222001, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
-      propertyPath: _groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4301931599998260238, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
       propertyPath: m_Name
       value: PlayerPH
-      objectReference: {fileID: 0}
-    - target: {fileID: 8414146204968709344, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

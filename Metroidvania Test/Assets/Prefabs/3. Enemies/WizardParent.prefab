@@ -168,7 +168,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   shootNumber: 0
-  bulletPosition1: {fileID: 276347109897024487}
+  bulletPositions:
+  - {fileID: 3998208130873470823}
 --- !u!1 &8080679251349104620
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8080679251349104620}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.038, y: 0.548, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -275,6 +276,8 @@ MonoBehaviour:
   _enemySpeed: 0
   _enemyRigidbody: {fileID: 4556775807456402552}
   _enemyDeathAnim: {fileID: 3703909135272085709, guid: 6b2c0684ba1359a46b265bfebee34059, type: 3}
+  wayPoints: []
+  startWaitTime: 1
 --- !u!114 &4363758165800695223
 MonoBehaviour:
   m_ObjectHideFlags: 0

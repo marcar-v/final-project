@@ -16,6 +16,7 @@ public class ThingEnemy : EnemyController
     private void Start()
     {
         _enemyLives = 3;
+        StartCoroutine(StartMovementAfterDelay(0.5f));
     }
 
     private void FixedUpdate()

@@ -48,7 +48,8 @@ MonoBehaviour:
   bullet: {fileID: 3551101152868097982, guid: db4cb39940ae4e942878edeff87cc661, type: 3}
   bulletsPool: []
   shootNumber: 0
-  bulletPosition1: {fileID: 1431873046506182598}
+  bulletPositions:
+  - {fileID: 8649523788557346772}
 --- !u!1 &1158700721828481469
 GameObject:
   m_ObjectHideFlags: 0
