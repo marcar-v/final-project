@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
-    int _bulletSpeed = 5;
+    int _bulletSpeed = 7;
     Animator _bulletAnimator;
     Rigidbody2D _rb;
 

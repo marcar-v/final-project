@@ -673,14 +673,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580e08651713eef49bfcc27d174b4cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPoolSize: 10
+  bulletPoolSize: 12
   bullet: {fileID: 5917507715224975948, guid: 5ddc10505db44e54cb9098614845e9e9, type: 3}
   bulletsPool: []
   shootNumber: 0
   bulletPositions:
   - {fileID: 2060673710}
+  - {fileID: 2062318316}
   - {fileID: 1278835517}
   - {fileID: 311760980}
+  - {fileID: 232469430}
   - {fileID: 660476193}
 --- !u!1 &161252432
 GameObject:
@@ -797,6 +799,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 55046312}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &232469429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 232469430}
+  m_Layer: 0
+  m_Name: ShootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &232469430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232469429}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 537648343}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &282864645
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,7 +886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 311760980}
   m_Layer: 0
-  m_Name: Down
+  m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1034,8 +1067,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2060673710}
+  - {fileID: 2062318316}
   - {fileID: 1278835517}
   - {fileID: 311760980}
+  - {fileID: 232469430}
   - {fileID: 660476193}
   m_Father: {fileID: 2081320021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1049,7 +1084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 660476193}
   m_Layer: 0
-  m_Name: Down
+  m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1860,7 +1895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278835517}
   m_Layer: 0
-  m_Name: Down
+  m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -7570,7 +7605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2060673710}
   m_Layer: 0
-  m_Name: Down
+  m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -7585,7 +7620,38 @@ Transform:
   m_GameObject: {fileID: 2060673709}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.25, y: 1.5, z: 0}
+  m_LocalPosition: {x: -2.25, y: 1.47, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 537648343}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2062318315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2062318316}
+  m_Layer: 0
+  m_Name: ShootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2062318316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062318315}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.75, y: 1.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
