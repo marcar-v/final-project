@@ -62,6 +62,12 @@ public class EnemyController : MonoBehaviour
 
     public virtual void EnemyMovement()
     {
+
+        if(!_canMove)
+        {
+            return;
+        }
+
         StartCoroutine(CheckEnemyMovement());
 
         _enemySpeed = 0.5f;
@@ -72,7 +78,7 @@ public class EnemyController : MonoBehaviour
         {
             if (_waitTime <= 0)
             {
-                if (wayPoints[_i] != wayPoints[wayPoints.Length - 1])
+                if (_i < wayPoints.Length - 1/*wayPoints[_i] != wayPoints[wayPoints.Length - 1]*/)
                 {
                     _i++;
                 }

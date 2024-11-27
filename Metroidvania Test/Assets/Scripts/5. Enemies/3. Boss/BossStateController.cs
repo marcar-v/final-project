@@ -26,8 +26,10 @@ public class BossStateController : MonoBehaviour
             _bossShooting = GetComponent<BossShooting>();
         }
 
+        movementManager.StartCoroutine(movementManager.StartMovementAfterDelay(3f));
+
         // Comienza el estado Move al iniciar
-        Invoke("ChangeState(EnemyState.Move)", 5f);
+        ChangeState(EnemyState.Move);
     }
     private void ChangeState(EnemyState newState)
     {
@@ -61,13 +63,18 @@ public class BossStateController : MonoBehaviour
 
     private void HandleAttackState()
     {
-        movementManager.StopMovement();
+        // Iniciar la corutina de ataque
+        StartCoroutine(PerformAttackAndReturnToMove(3f));  // 3 segundos de ataque, ajusta el tiempo como necesites
+    }
+
+    private IEnumerator PerformAttackAndReturnToMove(float attackDuration)
+    {
         _bossShooting.Attack(); // Ejecutar la lógica de ataque
 
-        // Volver al estado Move después de completar el ataque
-        if (!movementManager.IsAtWaypoint(1) || !_bossShooting.CanIAttack(false))
-        {
-            ChangeState(EnemyState.Move);
-        }
+        // Espera durante el tiempo del ataque
+        yield return new WaitForSeconds(attackDuration);
+
+        // Después de que haya pasado el tiempo de ataque, vuelve al estado Move
+        ChangeState(EnemyState.Move);
     }
 }
