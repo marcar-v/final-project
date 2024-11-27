@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class BossBullet : MonoBehaviour
 {
     int _bulletSpeed = 5;
     Animator _bulletAnimator;
@@ -12,11 +12,12 @@ public class EnemyBullet : MonoBehaviour
     {
         _bulletAnimator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+        transform.rotation = Quaternion.identity;
     }
 
     void OnEnable()
     {
-        _rb.velocity = Vector2.left * _bulletSpeed;
+        _rb.velocity = Vector2.down * _bulletSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

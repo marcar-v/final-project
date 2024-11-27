@@ -47,7 +47,7 @@ public class BulletPool : MonoBehaviour
 
             // Configura su posición y activa la bala
             currentBullet.transform.position = bulletPosition.position;
-            currentBullet.transform.rotation = bulletPosition.rotation; // Opcional: ajusta la rotación si es necesario
+            //currentBullet.transform.rotation = bulletPosition.rotation; // Opcional: ajusta la rotación si es necesario
             currentBullet.SetActive(true);
 
             // Incrementa el índice del pool
