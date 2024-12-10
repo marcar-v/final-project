@@ -13,9 +13,12 @@ public class AggroState : MonoBehaviour
 
     [SerializeField] BulletPool _enemyBulletPool;
 
+    AudioSource _shootSound;
+
     void Awake()
     {
         _stateController = GetComponent<StateController>();
+        _shootSound = GetComponent<AudioSource>();
     }
 
     private bool CanIAttack()
@@ -39,6 +42,7 @@ public class AggroState : MonoBehaviour
     public void Shoot()
     {
         _enemyBulletPool.GetComponent<BulletPool>().ShootBullet();
+        _shootSound.Play();
     }
 
     void Update()

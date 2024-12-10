@@ -5,6 +5,12 @@ using UnityEngine;
 public class LifeRecovered : MonoBehaviour
 {
     private int lives = 3;
+    AudioSource _liveRecoveredSound;
+
+    private void Awake()
+    {
+        _liveRecoveredSound = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,6 +18,7 @@ public class LifeRecovered : MonoBehaviour
         {
             if(LifeAdded())
             {
+                _liveRecoveredSound.Play();
                 Destroy(gameObject);
             }
         }

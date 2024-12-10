@@ -16,6 +16,11 @@ public class BossShooting : MonoBehaviour
     [SerializeField] Transform attackWaypoint;
     private bool isAtCorrectWaypoint = false;
 
+
+    [Header("SFX")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _shootSound;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -72,6 +77,7 @@ public class BossShooting : MonoBehaviour
 
     public void Shoot()
     {
+        _audioSource.PlayOneShot(_shootSound);
         _enemyBulletPool.GetComponent<BulletPool>().ShootBullet();
     }
 }

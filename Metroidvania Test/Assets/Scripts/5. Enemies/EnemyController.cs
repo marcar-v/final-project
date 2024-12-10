@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject _enemyDeathAnim;
 
     bool _enemyIsDead = false;
-
+    [SerializeField] AudioSource _enemyDeathSound;
     int _playerBulletDamage = 1;
 
     [Header("Movement")]
@@ -148,6 +148,7 @@ public class EnemyController : MonoBehaviour
 
     public virtual void PlayDeadAnimation()
     {
+        _enemyDeathSound.Play();
         Instantiate(_enemyDeathAnim, transform.position, Quaternion.identity);
     }
 

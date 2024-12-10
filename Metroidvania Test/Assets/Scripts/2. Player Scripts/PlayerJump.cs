@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerJump : PlayerController
 {
     float _jumpForce = 3f;
-    CapsuleCollider2D _playerCollider;
     [SerializeField] LayerMask _groundLayer;
     int _totalJumps = 1;
     int _remainingJumps;
+    [Header("SFX")]
+    [SerializeField] AudioSource _jumpSound;
 
     PlayerCrouch _playerCrouchScript;
 
@@ -47,7 +48,7 @@ public class PlayerJump : PlayerController
         }
         if (Input.GetKeyDown(KeyCode.Space) && _remainingJumps > 0)
         {
-
+            _jumpSound.Play();
             _remainingJumps--;
             _rb.velocity = new Vector2(_rb.velocity.x, 0f);
             _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);

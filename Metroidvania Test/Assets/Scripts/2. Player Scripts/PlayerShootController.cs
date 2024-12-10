@@ -10,11 +10,17 @@ public class PlayerShootController : MonoBehaviour
     public GameObject _bulletPosition;
 
     [SerializeField] Animator _anim;
+    AudioSource _shootSound;
 
 
     [SerializeField] PlayerCrouch _playerCrouch;
     bool _isSpecialShooting = false;
     bool _isCrouching = false;
+
+    private void Awake()
+    {
+        _shootSound = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -37,6 +43,7 @@ public class PlayerShootController : MonoBehaviour
     public void Shoot()
     {
         _playerBullet.GetComponent<BulletPool>().ShootBullet();
+        _shootSound.Play();
         _anim.SetTrigger("Shoot");
         StartCoroutine(ResetShootAnim());
     }

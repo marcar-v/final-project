@@ -53,7 +53,6 @@ public class BossStateController : MonoBehaviour
     private void HandleMoveState()
     {
         movementManager.EnemyMovement();  // El enemigo se mueve
-
         //Condición para pasar al estado de ataque(ejemplo: si está cerca del jugador)
         if (movementManager.IsAtWaypoint(2) && _bossShooting.CanIAttack(true))
         {

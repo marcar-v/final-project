@@ -17,7 +17,8 @@ public class PlayerDamaged : PlayerController
     bool _isDead;
 
     Animator _anim;
-    [SerializeField] CapsuleCollider2D _playerCollider;
+
+    [SerializeField] AudioSource _hitSound;
 
     private void Awake()
     {
@@ -44,6 +45,8 @@ public class PlayerDamaged : PlayerController
         if (!_isInvulnerable)
         {
             _currentLife -= damage;
+
+            _hitSound.Play();
 
             _lives.DeactivateLife(_currentLife);
 

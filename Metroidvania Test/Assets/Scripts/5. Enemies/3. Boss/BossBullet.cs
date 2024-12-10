@@ -7,12 +7,14 @@ public class BossBullet : MonoBehaviour
     int _bulletSpeed = 7;
     Animator _bulletAnimator;
     Rigidbody2D _rb;
+    AudioSource _bulletHit;
 
     private void Awake()
     {
         _bulletAnimator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         transform.rotation = Quaternion.identity;
+        _bulletHit = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -24,6 +26,7 @@ public class BossBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ground"))
         {
+            _bulletHit.Play();
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             _bulletAnimator.SetTrigger("BulletHit");
 
