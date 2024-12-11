@@ -32,7 +32,7 @@ public class LifeRecovered : MonoBehaviour
             return false;
         }
 
-        Lives._livesInstance.ActivateLife(lives);
+        Lives._livesInstance.GainLife();
         lives += 1;
 
         return true;

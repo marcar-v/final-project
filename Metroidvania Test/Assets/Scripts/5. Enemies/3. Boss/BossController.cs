@@ -6,6 +6,9 @@ public class BossController : EnemyController
 {
     Transform _target;
 
+    public delegate void BossDeathEvent();
+    public static event BossDeathEvent OnBossDeath;
+
     private void Awake()
     {
         _target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -13,13 +16,19 @@ public class BossController : EnemyController
 
     private void Start()
     {
-        _enemyLives = 10;
+        _enemyLives = 20;
     }
 
     public override void LoseLife(int damage)
     {
         base.LoseLife(damage);
         StartCoroutine(ForceResetTrigger());
+    }
+
+    public override void EnemyDie()
+    {
+        OnBossDeath?.Invoke();
+        base.EnemyDie();
     }
 
     private IEnumerator ForceResetTrigger()

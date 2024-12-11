@@ -16,7 +16,18 @@ public class EndLevel : MonoBehaviour
         if(collision.tag == "Player")
         {
             _teleportSound.Play();
-            TransitionController._transitionInstance.LoadNextScene();
+
+            int _currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            if(_currentSceneIndex == 3)
+            {
+                TransitionController._transitionInstance.RestartLevel1();
+            }
+
+            else
+            {
+                TransitionController._transitionInstance.LoadNextScene();
+            }
         }
     }
 }

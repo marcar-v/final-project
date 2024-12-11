@@ -30,6 +30,12 @@ public class TransitionController : MonoBehaviour
         StartCoroutine(SceneLoad(_nextSceneIndex));
     }
 
+    public void RestartLevel1()
+    {
+        int _firstScene = SceneManager.GetActiveScene().buildIndex - 2;
+        StartCoroutine(SceneLoad(1));
+    }
+
     public IEnumerator SceneLoad(int sceneIndex)
     {
         //Trigger para reproducir efecto fade in

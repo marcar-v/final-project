@@ -19,6 +19,7 @@ public class PlayerDamaged : PlayerController
     Animator _anim;
 
     [SerializeField] AudioSource _hitSound;
+    [SerializeField] GameObject _gameOverPanel;
 
     private void Awake()
     {
@@ -48,7 +49,7 @@ public class PlayerDamaged : PlayerController
 
             _hitSound.Play();
 
-            _lives.DeactivateLife(_currentLife);
+            _lives.DeactivateLife();
 
             if (_currentLife <= 0 && !_isDead)
             {
@@ -91,11 +92,11 @@ public class PlayerDamaged : PlayerController
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             gameObject.SetActive(false);
         }
-        Invoke("RestartGame", 2f);
+        Invoke("GameOverPanel", 2f);
     }
 
-    public void RestartGame()
+    public void GameOverPanel()
     {
-        TransitionController._transitionInstance.ReloadCurrentScene();
+        _gameOverPanel.SetActive(true);
     }
 }
