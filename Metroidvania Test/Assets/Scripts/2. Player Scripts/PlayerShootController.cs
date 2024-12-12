@@ -77,6 +77,4 @@ public class PlayerShootController : MonoBehaviour
         _anim.ResetTrigger("SpecialShoot");
         _anim.CrossFade("Crouch", 0.1f);
     }
-
-
 }

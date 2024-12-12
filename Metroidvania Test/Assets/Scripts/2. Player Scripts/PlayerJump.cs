@@ -27,7 +27,7 @@ public class PlayerJump : PlayerController
     private void Update()
     {
         _isCrouching = _playerCrouchScript.IsCrouching();
-        if (!_isCrouching) 
+        if (!_isCrouching)
         {
             Jump();
         }
@@ -35,7 +35,7 @@ public class PlayerJump : PlayerController
 
     bool isGrounded()
     {
-        RaycastHit2D _raycastHit = Physics2D.BoxCast(_playerCollider.bounds.center, 
+        RaycastHit2D _raycastHit = Physics2D.BoxCast(_playerCollider.bounds.center,
             new Vector2(_playerCollider.bounds.size.x, _playerCollider.bounds.size.y), 0f, Vector2.down, 0.2f, _groundLayer);
         return _raycastHit.collider != null;
     }
@@ -46,7 +46,9 @@ public class PlayerJump : PlayerController
         {
             _remainingJumps = _totalJumps;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && _remainingJumps > 0)
+
+        // Detecta si se presiona el botón de salto o si el joystick se mueve hacia arriba
+        if ((Input.GetKeyDown(KeyCode.Space) || (_joystick != null && _joystick.Vertical > 0.5f)) && _remainingJumps > 0)
         {
             _jumpSound.Play();
             _remainingJumps--;
@@ -58,7 +60,6 @@ public class PlayerJump : PlayerController
         {
             _animator.SetBool("Jump", true);
             _animator.SetBool("Run", false);
-
         }
 
         if (isGrounded())
@@ -67,11 +68,10 @@ public class PlayerJump : PlayerController
             _animator.SetBool("Fall", false);
         }
 
-        if(_rb.velocity.y < 0f)
+        if (_rb.velocity.y < 0f)
         {
             _animator.SetBool("Fall", true);
         }
-
         else if (_rb.velocity.y > 0f)
         {
             _animator.SetBool("Fall", false);

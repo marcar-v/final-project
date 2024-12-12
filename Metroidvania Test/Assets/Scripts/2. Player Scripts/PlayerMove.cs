@@ -10,6 +10,7 @@ public class PlayerMove : PlayerController
     {
         _playerCrouchScript = GetComponent<PlayerCrouch>();
     }
+
     private void Update()
     {
         _isCrouching = _playerCrouchScript.IsCrouching();
@@ -27,23 +28,31 @@ public class PlayerMove : PlayerController
 
     private void PlayerMovement()
     {
+        float horizontalInput = 0f;
+
+        // Detecta la entrada del teclado o el joystick
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            _runSpeed = 1;
-            FlipCharacter();
-            _animator.SetBool("Run", true);
+            horizontalInput = 1f;
         }
-
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            _runSpeed = -1;
+            horizontalInput = -1f;
+        }
+        else if (_joystick != null)
+        {
+            horizontalInput = _joystick.Horizontal; // Usar el valor del joystick
+        }
+
+        _runSpeed = Mathf.Clamp(horizontalInput, -1f, 1f);
+
+        if (_runSpeed != 0)
+        {
             FlipCharacter();
             _animator.SetBool("Run", true);
         }
-
         else
         {
-            _runSpeed = 0;
             _animator.SetBool("Run", false);
         }
 
@@ -56,7 +65,6 @@ public class PlayerMove : PlayerController
         {
             Flip();
         }
-
         else if (_runSpeed > 0 && !_isFacingRight)
         {
             Flip();
@@ -66,7 +74,6 @@ public class PlayerMove : PlayerController
     void Flip()
     {
         _isFacingRight = !_isFacingRight;
-
         transform.Rotate(0f, 180f, 0f);
     }
 

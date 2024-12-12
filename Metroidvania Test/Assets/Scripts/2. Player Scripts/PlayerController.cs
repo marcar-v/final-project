@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     protected SpriteRenderer _spriteRenderer;
     [SerializeField] protected Animator _animator;
     protected CapsuleCollider2D _playerCollider;
+    [SerializeField] protected Joystick _joystick;
+
 
     protected bool _isCrouching = false;
     private void Awake()
