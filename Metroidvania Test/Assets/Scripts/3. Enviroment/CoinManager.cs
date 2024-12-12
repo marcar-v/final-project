@@ -5,34 +5,49 @@ using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI _numberOfCoinsText;
-    int _totalCoinsInLevel;
+    public static CoinManager coinManagerInstance;
+    public TextMeshProUGUI _numberOfCoinsText;
     int _coinsCollected;
+    public int coinsCollected { get; private set; }
 
+    private void Awake()
+    {
+        if (coinManagerInstance == null)
+        {
+            coinManagerInstance = this;  // Asigna la instancia de CoinManager
+        }
+        else
+        {
+            Destroy(gameObject);  // Si ya existe, destruye el objeto duplicado
+        }
+    }
 
     public int TotalCoins
     {
-        get
-        {
-            return _coinsCollected;
-        }
-
+        get { return _coinsCollected; }
         set
         {
             _coinsCollected = value;
             UpdateCoinsColleted();
+            PlayerPrefs.SetInt("TotalCoins", _coinsCollected); // Actualiza PlayerPrefs
+            PlayerPrefs.Save();
         }
     }
 
     private void Start()
     {
-        if (IsFirstLevel()) // Implementa esta lógica según tu juego
-        {
-            PlayerPrefs.DeleteKey("TotalCoins");
-        }
         _coinsCollected = PlayerPrefs.GetInt("TotalCoins", 0);
         UpdateCoinsColleted();
     }
+
+    public void CollectCoin()
+    {
+        coinsCollected++;
+        PlayerPrefs.SetInt("TotalCoins", coinsCollected);
+        PlayerPrefs.Save();
+        Debug.Log("Monedas guardadas en PlayerPrefs: " + coinsCollected);
+    }
+
     private void OnDestroy()
     {
         // Guardar las monedas al salir del nivel
@@ -45,11 +60,5 @@ public class CoinManager : MonoBehaviour
     {
         string _coinsCollectedStr = string.Format("{0:0000}", _coinsCollected);
         _numberOfCoinsText.text = _coinsCollectedStr;
-    }
-
-    private bool IsFirstLevel()
-    {
-        // Verifica el índice de escena
-        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1;
     }
 }

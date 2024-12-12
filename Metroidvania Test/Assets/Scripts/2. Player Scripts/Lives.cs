@@ -25,7 +25,16 @@ public class Lives : MonoBehaviour
     private void Start()
     {
         // Cargar el número de vidas desde PlayerPrefs, predeterminado a 3 si no existe
-        _currentLives = PlayerPrefs.GetInt("CurrentLives", 3); // Comienza con 3 vidas activas
+        _currentLives = PlayerPrefs.GetInt("CurrentLives", 3);
+
+        // Si por alguna razón _currentLives es 0 al iniciar, restablecerlo a 3
+        if (_currentLives <= 0)
+        {
+            _currentLives = 3;
+            PlayerPrefs.SetInt("CurrentLives", _currentLives);
+            PlayerPrefs.Save();
+        }
+
         UpdateLivesUI();
     }
 
@@ -66,5 +75,12 @@ public class Lives : MonoBehaviour
         {
             _lives[i].SetActive(i < _currentLives); // Las primeras `_currentLives` están activas
         }
+    }
+
+    public void ResetLives()
+    {
+        _currentLives = 3;
+        PlayerPrefs.SetInt("CurrentLives", _currentLives);
+        PlayerPrefs.Save();
     }
 }

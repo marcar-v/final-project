@@ -6,8 +6,6 @@ public class PlayerMove : PlayerController
 
     PlayerCrouch _playerCrouchScript;
 
-    [SerializeField] AudioSource _runSound;
-
     private void Awake()
     {
         _playerCrouchScript = GetComponent<PlayerCrouch>();
@@ -31,7 +29,6 @@ public class PlayerMove : PlayerController
     {
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            _runSound.Play();
             _runSpeed = 1;
             FlipCharacter();
             _animator.SetBool("Run", true);
@@ -39,7 +36,6 @@ public class PlayerMove : PlayerController
 
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            _runSound.Play();
             _runSpeed = -1;
             FlipCharacter();
             _animator.SetBool("Run", true);

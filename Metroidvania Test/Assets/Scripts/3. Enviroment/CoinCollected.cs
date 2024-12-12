@@ -19,7 +19,10 @@ public class CoinCollected : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _coinAudio.Play();
+
+            // Incrementar las monedas
             _coinsText.GetComponent<CoinManager>().TotalCoins++;
+
             GetComponent<SpriteRenderer>().enabled = false;
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
 

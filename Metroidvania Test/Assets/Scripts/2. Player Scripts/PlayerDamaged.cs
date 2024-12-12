@@ -19,6 +19,7 @@ public class PlayerDamaged : PlayerController
     Animator _anim;
 
     [SerializeField] AudioSource _hitSound;
+    [SerializeField] GameOverPanel _gameOverPanelScript;
     [SerializeField] GameObject _gameOverPanel;
 
     private void Awake()
@@ -34,6 +35,7 @@ public class PlayerDamaged : PlayerController
         }
 
         _anim = GetComponent<Animator>();
+
     }
 
     private void Start()
@@ -65,6 +67,10 @@ public class PlayerDamaged : PlayerController
             }
         }
     }
+    public void ResetCollisionAfterDeath()
+    {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
+    }
 
     private IEnumerator InvulnerabilityCoroutine()
     {
@@ -82,6 +88,7 @@ public class PlayerDamaged : PlayerController
         if (collision.gameObject.CompareTag("Enemy"))
         {
             PlayerIsDamaged(1);
+            Debug.Log("Enemigo detectado");
         }
     }
 
@@ -89,10 +96,21 @@ public class PlayerDamaged : PlayerController
     {
         if (_currentLife <= 0 && _isDead == true)
         {
+            // Resetea las vidas del jugador
+            Lives._livesInstance.ResetLives();
+
+            // Detener el movimiento del jugador
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            // Desactivar al jugador
             gameObject.SetActive(false);
         }
-        Invoke("GameOverPanel", 2f);
+
+        PlayerPrefs.SetInt("TotalCoins", CoinManager.coinManagerInstance.TotalCoins);
+        PlayerPrefs.Save();
+
+        // Espera 1 segundo antes de mostrar el panel de Game Over
+        Invoke("GameOverPanel", 0.5f);
     }
 
     public void GameOverPanel()

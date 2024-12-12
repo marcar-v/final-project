@@ -49,7 +49,7 @@ public class TransitionController : MonoBehaviour
 
     public void ReloadCurrentScene()
     {
-        int _nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        //int _nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         StartCoroutine(ReloadScene());
     }
 
