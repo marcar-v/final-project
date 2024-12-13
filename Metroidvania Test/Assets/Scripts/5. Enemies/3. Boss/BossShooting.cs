@@ -19,7 +19,7 @@ public class BossShooting : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip _shootSound;
+    //[SerializeField] AudioClip _shootSound;
 
     private void Awake()
     {
@@ -77,7 +77,7 @@ public class BossShooting : MonoBehaviour
 
     public void Shoot()
     {
-        _audioSource.PlayOneShot(_shootSound);
+        _audioSource.Play();
         _enemyBulletPool.GetComponent<BulletPool>().ShootBullet();
     }
 }

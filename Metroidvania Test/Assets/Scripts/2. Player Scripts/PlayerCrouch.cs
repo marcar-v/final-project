@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCrouch : PlayerController
 {
     float _currentSpeed;
-    
+
     public bool IsCrouching()
     {
         return _isCrouching;
@@ -18,7 +18,8 @@ public class PlayerCrouch : PlayerController
 
     void Crouching()
     {
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        // Detecta si se presionan las teclas o si el joystick apunta hacia abajo
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || (_joystick != null && _joystick.Vertical < -0.5f))
         {
             StartCrouching();
         }
@@ -27,6 +28,7 @@ public class PlayerCrouch : PlayerController
             StopCrouching();
         }
     }
+
     public virtual void StartCrouching()
     {
         _isCrouching = true;
@@ -38,5 +40,4 @@ public class PlayerCrouch : PlayerController
         _isCrouching = false;
         _animator.SetBool("isCrouching", false);
     }
-
 }

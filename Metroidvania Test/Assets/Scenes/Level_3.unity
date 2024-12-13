@@ -15402,6 +15402,10 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 5356040562425944177, guid: 10ae6204bb4c85b468d1ea2d62e798a6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f1cb5d83282f2904a85f73111d068616, type: 3}
     - target: {fileID: 5885474802742789462, guid: 10ae6204bb4c85b468d1ea2d62e798a6, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -16089,6 +16093,14 @@ PrefabInstance:
       propertyPath: _lives
       value: 
       objectReference: {fileID: 708762319733843576}
+    - target: {fileID: 204372436207167772, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
+      propertyPath: _gameOverPanel
+      value: 
+      objectReference: {fileID: 156486483}
+    - target: {fileID: 204372436207167772, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
+      propertyPath: _gameOverPanelScript
+      value: 
+      objectReference: {fileID: 156486485}
     - target: {fileID: 1279908900963822448, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2

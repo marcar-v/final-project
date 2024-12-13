@@ -13648,6 +13648,14 @@ PrefabInstance:
       propertyPath: _maxLife
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 204372436207167772, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
+      propertyPath: _gameOverPanel
+      value: 
+      objectReference: {fileID: 1369315173}
+    - target: {fileID: 204372436207167772, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
+      propertyPath: _gameOverPanelScript
+      value: 
+      objectReference: {fileID: 1369315175}
     - target: {fileID: 1279908900963822448, guid: 12f62ee07c23f28419ca4649eab38a93, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.05

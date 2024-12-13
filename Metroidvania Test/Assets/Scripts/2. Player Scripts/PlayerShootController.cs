@@ -55,7 +55,7 @@ public class PlayerShootController : MonoBehaviour
         _anim.CrossFade("Idle", 0.1f);
     }
 
-    void SpecialShoot()
+    public void SpecialShoot()
     {
         if (specialAttackReleased != null)
         {
