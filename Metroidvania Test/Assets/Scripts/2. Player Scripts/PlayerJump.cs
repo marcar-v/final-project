@@ -47,15 +47,35 @@ public class PlayerJump : PlayerController
             _remainingJumps = _totalJumps;
         }
 
-        // Detecta si se presiona el botón de salto o si el joystick se mueve hacia arriba
-        if ((Input.GetKeyDown(KeyCode.Space) || (_joystick != null && _joystick.Vertical > 0.5f)) && _remainingJumps > 0)
+#if UNITY_EDITOR || UNITY_STANDALONE
+        // Detecta si se presiona la barra espaciadora en PC
+        if (Input.GetKeyDown(KeyCode.Space) && _remainingJumps > 0)
         {
-            _jumpSound.Play();
-            _remainingJumps--;
-            _rb.velocity = new Vector2(_rb.velocity.x, 0f);
-            _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            PerformJump();
         }
+#endif
 
+#if UNITY_ANDROID || UNITY_IOS
+        // Detecta si el joystick se mueve hacia arriba en dispositivos móviles
+        if (_joystick != null && _joystick.Vertical > 0.5f && _remainingJumps > 0)
+        {
+            PerformJump();
+        }
+#endif
+
+        UpdateJumpAnimation();
+    }
+
+    void PerformJump()
+    {
+        _jumpSound.Play();
+        _remainingJumps--;
+        _rb.velocity = new Vector2(_rb.velocity.x, 0f);
+        _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+    }
+
+    void UpdateJumpAnimation()
+    {
         if (!isGrounded())
         {
             _animator.SetBool("Jump", true);

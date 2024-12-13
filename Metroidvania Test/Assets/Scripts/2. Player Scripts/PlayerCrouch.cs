@@ -18,8 +18,9 @@ public class PlayerCrouch : PlayerController
 
     void Crouching()
     {
-        // Detecta si se presionan las teclas o si el joystick apunta hacia abajo
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || (_joystick != null && _joystick.Vertical < -0.5f))
+#if UNITY_EDITOR || UNITY_STANDALONE
+        // Detecta si se presionan las teclas en PC
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             StartCrouching();
         }
@@ -27,6 +28,19 @@ public class PlayerCrouch : PlayerController
         {
             StopCrouching();
         }
+#endif
+
+#if UNITY_ANDROID || UNITY_IOS
+        // Detecta si el joystick apunta hacia abajo en dispositivos móviles
+        if (_joystick != null && _joystick.Vertical < -0.5f)
+        {
+            StartCrouching();
+        }
+        else
+        {
+            StopCrouching();
+        }
+#endif
     }
 
     public virtual void StartCrouching()
@@ -40,4 +54,5 @@ public class PlayerCrouch : PlayerController
         _isCrouching = false;
         _animator.SetBool("isCrouching", false);
     }
+
 }

@@ -30,7 +30,8 @@ public class PlayerMove : PlayerController
     {
         float horizontalInput = 0f;
 
-        // Detecta la entrada del teclado o el joystick
+#if UNITY_EDITOR || UNITY_STANDALONE
+        // Detecta las teclas de movimiento en PC
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             horizontalInput = 1f;
@@ -39,10 +40,15 @@ public class PlayerMove : PlayerController
         {
             horizontalInput = -1f;
         }
-        else if (_joystick != null)
+#endif
+
+#if UNITY_ANDROID || UNITY_IOS
+        // Detecta la entrada del joystick en móvil
+        if (_joystick != null)
         {
             horizontalInput = _joystick.Horizontal; // Usar el valor del joystick
         }
+#endif
 
         _runSpeed = Mathf.Clamp(horizontalInput, -1f, 1f);
 
@@ -76,5 +82,4 @@ public class PlayerMove : PlayerController
         _isFacingRight = !_isFacingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-
 }
