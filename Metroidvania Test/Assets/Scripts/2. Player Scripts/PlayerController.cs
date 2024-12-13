@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        _playerCollider = GetComponentInChildren<CapsuleCollider2D>();
     }
 
 }

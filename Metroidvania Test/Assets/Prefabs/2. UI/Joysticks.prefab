@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SPECIAL
+  m_text: JUMP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ce151400cd5969f47821f54e5afb8405, type: 2}
   m_sharedMaterial: {fileID: -1435533875243925462, guid: ce151400cd5969f47821f54e5afb8405, type: 2}
@@ -226,8 +226,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 3429787167765504489}
   - component: {fileID: 7842164956376658319}
   m_Layer: 5
-  m_Name: SpecialShoot Button
+  m_Name: Jump Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,8 +342,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 798.27, y: -214}
-  m_SizeDelta: {x: 209.2664, y: 209.2664}
+  m_AnchoredPosition: {x: 738, y: -346}
+  m_SizeDelta: {x: 142.1531, y: 142.1531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1505516583460885866
 CanvasRenderer:
@@ -428,8 +428,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerShootController, Assembly-CSharp
-        m_MethodName: SpecialShoot
+        m_TargetAssemblyTypeName: PlayerJump, Assembly-CSharp
+        m_MethodName: JumpButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -475,8 +475,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 589, y: -402}
-  m_SizeDelta: {x: 209.2664, y: 209.2664}
+  m_AnchoredPosition: {x: 546, y: -393.92}
+  m_SizeDelta: {x: 142.15, y: 142.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3604200236738271582
 CanvasRenderer:
@@ -642,7 +642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -690
+      value: -648
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_AnchoredPosition.y

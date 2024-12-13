@@ -25,11 +25,8 @@ public class PlayerShootController : MonoBehaviour
         _shootSound = GetComponent<AudioSource>();
 
         // Configura los eventos de los botones
-        if (_shootButton != null)
-            _shootButton.onClick.AddListener(Shoot);
-
-        if (_specialShootButton != null)
-            _specialShootButton.onClick.AddListener(SpecialShoot);
+        //if (_shootButton != null)
+        //    _shootButton.onClick.AddListener(Shoot);
     }
 
     private void Update()

@@ -34,11 +34,11 @@ public class PlayerMove : PlayerController
         // Detecta las teclas de movimiento en PC
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            horizontalInput = 1f;
+            _runSpeed = 1f;
         }
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            horizontalInput = -1f;
+            _runSpeed = -1f;
         }
 #endif
 
